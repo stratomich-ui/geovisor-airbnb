@@ -79,10 +79,9 @@ function inicializarMapa() {
     attributionControl: false
   });
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-    subdomains: 'abcd',
-    maxZoom: 20
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19
 }).addTo(mapa);
 
   // Pane dedicado para el transporte: encima de tiles (200), debajo de overlays temáticos (400)
