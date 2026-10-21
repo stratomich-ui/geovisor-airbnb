@@ -79,10 +79,7 @@ function inicializarMapa() {
     attributionControl: false
   });
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 19
-}).addTo(mapa);
+ L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(mapa);
 
   // Pane dedicado para el transporte: encima de tiles (200), debajo de overlays temáticos (400)
   mapa.createPane('transportePane');
