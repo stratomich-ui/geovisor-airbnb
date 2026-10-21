@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airbnb CDMX 2024-2026 · Geohistoria UNAM</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- PORTADA -->
+<header class="cover">
+  <img src="img/unam-logo.png" alt="UNAM" class="unam-logo">
+  
+  <div class="cover-content">
+    <h1>Corporativización del Mercado de Renta Temporal de Airbnb en la Ciudad de México</h1>
+    <p class="subtitle">XV CONGRESO INTERNACIONAL DE INVESTIGACIÓN SOCIAL<br>22 Y 23 de Octubre de 2026 ICSHu UAEH</p>
+    <p class="meta">Dr. Michelle López Nicolás · UNAM · 2026</p>
+    <span class="unam-badge">Universidad Nacional Autónoma de México</span>
+  </div>
+
+  <!--  NUEVA IMAGEN DEL CONGRESO -->
+  <img src="img/congreso.png" alt="Congreso Internacional de Investigación Social" class="congreso-logo">
+</header>
+
+<!-- APP -->
+<div class="app-container">
+  <section class="content-column">
+    <div class="carousel-header">
+      <span class="carousel-counter" id="carousel-counter">01 / 07</span>
+      <span class="carousel-title" id="carousel-title">¿Qué es la Corporativización de Airbnb</span>
+    </div>
+    <div class="carousel-content" id="carousel-content"></div>
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="btn-prev">◀ Anterior</button>
+      <div class="carousel-dots" id="carousel-dots"></div>
+      <button class="carousel-btn" id="btn-next">Siguiente ▶</button>
+    </div>
+  </section>
+
+  <section class="map-column">
+    <div class="map-header">
+      <span>Distribución territorial de la oferta</span>
+      <span class="corte-activo" id="corte-label">Dic 2024</span>
+    </div>
+    <div class="map-tabs">
+      <button class="map-tab active" data-tab="variables">Variables</button>
+      <button class="map-tab" data-tab="capas">Capas</button>
+    </div>
+    <div class="map-panel active" id="panel-variables">
+      <div class="control-group">
+        <label for="select-variable">Variable a visualizar:</label>
+        <select id="select-variable">
+          <option value="precio_2024_t4">Precio Dic 2024</option>
+          <option value="precio_2025_t1">Precio Mar 2025</option>
+          <option value="precio_2025_t2">Precio Jun 2025</option>
+          <option value="precio_2025_t3">Precio Sep 2025</option>
+          <option value="precio_2026_t1">Precio Mar 2026</option>
+          <option value="precio_2026_t2">Precio Jun 2026</option>
+          <option value="precio_2026_t3">Precio Sep 2026</option>
+          <option value="crecimiento_total">Crecimiento Total (%)</option>
+        </select>
+      </div>
+    </div>
+    <div class="map-panel" id="panel-capas">
+      <div class="control-group">
+        <label for="select-capa">Tipo de geometría:</label>
+        <select id="select-capa">
+          <option value="alcaldias">Alcaldías (polígonos)</option>
+          <option value="anfitriones_menores">Anfitriones Menores (puntos)</option>
+          <option value="anfitriones_profesionales">Anfitriones Profesionales (puntos)</option>
+        </select>
+      </div>
+    </div>
+    <div id="map"></div>
+    
+    <!-- LEYENDA -->
+    <div class="legend" id="leyenda"></div>
+    
+    <!-- NUEVO: GRÁFICA TEMPORAL -->
+    <div class="chart-container" style="padding: 1rem 1.4rem; background: #FFF; border-top: 1px solid #E6EBF2;">
+      <h4 id="chart-title" style="font-size: 0.75rem; color: #002B5C; text-transform: uppercase; margin-bottom: 10px; font-weight: bold;">
+        Tendencia de Precios (Promedio CDMX)
+      </h4>
+      <div style="height: 150px; width: 100%;">
+        <canvas id="grafica-precios"></canvas>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<footer>
+  <p>Los datos provienen de <a href="https://insideairbnb.com/">Inside Airbnb</a>. El análisis fue procesado en PostgreSQL con PostGIS. Este geovisor forma parte del proyecto de investigación <em>Anfitriones Corporativos y el Mercado de Renta Temporal de Airbnb</em> (UNAM, 2026).</p>
+</footer>
+
+<!-- Librerías -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- NUEVO: Chart.js para la gráfica -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Scripts propios -->
+<script src="js/escenas.js"></script>
+<script src="js/carrusel.js"></script>
+<script src="js/mapa.js"></script>
+
+<!-- FORZAR EL ARRANQUE DEL CARRUSEL -->
+<script>
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      if (typeof renderizarEscena === 'function' && typeof ESCENAS !== 'undefined') {
+        console.log("Iniciando carrusel...");
+        renderizarEscena(0);
+      } else {
+        console.error("No se encontró la función del carrusel o los datos.");
+      }
+    }, 200);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,769 @@
+/* ============================================
+   VARIABLES
+   ============================================ */
+:root {
+  --unam-azul:        #002B5C;
+  --unam-azul-osc:    #001A3D;
+  --unam-azul-claro:  #E6EBF2;
+  --unam-oro:         #D4AF37;
+  --unam-oro-claro:   #F4E5B1;
+  --unam-gris:        #4A4A4A;
+  --unam-gris-claro:  #F0F0F0;
+  --unam-blanco:      #FFFFFF;
+  --unam-rojo:        #A01C2E;
+  --unam-verde:       #2E7D32;
+  --radio-sm: 8px;
+  --radio-md: 14px;
+  --radio-lg: 20px;
+  --radio-xl: 28px;
+  --sombra-md: 0 6px 24px rgba(0,43,92,0.12);
+  --sombra-lg: 0 12px 40px rgba(0,43,92,0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--unam-gris-claro);
+  color: var(--unam-gris);
+  line-height: 1.6;
+  padding: 1.5rem 0;
+}
+
+/* ============================================
+   PORTADA — layout flex, logo izquierda + texto derecha
+   ============================================ */
+header.cover {
+  background: linear-gradient(135deg, var(--unam-azul-osc) 0%, var(--unam-azul) 100%);
+  color: var(--unam-blanco);
+  padding: 1.8rem 2.5rem;
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-lg);
+  margin: 0 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  min-height: 220px;
+}
+
+header.cover::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--unam-oro);
+}
+
+header.cover .unam-logo {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+  transition: opacity 0.3s ease;
+}
+
+header.cover .unam-logo:hover { opacity: 1; }
+
+header.cover .cover-content {
+  flex: 1;
+  text-align: center;
+}
+
+header.cover h1 {
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  color: var(--unam-blanco);
+  margin: 0 0 0.5rem;
+}
+
+header.cover .subtitle {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--unam-oro-claro);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.6rem;
+}
+
+header.cover .meta {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0 0 0.8rem;
+}
+
+header.cover .unam-badge {
+  display: inline-block;
+  padding: 0.4rem 1.1rem;
+  border: 1.5px solid var(--unam-oro);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--unam-oro);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ============================================
+   LAYOUT PRINCIPAL
+   ============================================ */
+.app-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 700px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ============================================
+   COLUMNA IZQUIERDA — CARRUSEL DE ESCENAS
+   ============================================ */
+.content-column {
+  background: var(--unam-blanco);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-md);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 920px;
+}
+
+.content-column::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--unam-oro);
+  z-index: 1;
+}
+
+/* ============================================
+   HEADER DEL CARRUSEL
+   ============================================ */
+.carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.4rem;
+  border-bottom: 2px solid var(--unam-azul);
+  background: var(--unam-azul-claro);
+}
+
+.carousel-counter {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--unam-oro);
+  letter-spacing: 0.15em;
+  background: rgba(212,175,55,0.15);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
+.carousel-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--unam-azul);
+  font-style: italic;
+  text-align: right;
+}
+
+/* ============================================
+   CONTENIDO DEL CARRUSEL
+   ============================================ */
+.carousel-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background: var(--unam-blanco);
+}
+
+.scene-text {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: var(--unam-gris);
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.scene-text:first-of-type::first-letter {
+  font-size: 3rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.9;
+  margin: 0.2rem 0.5rem 0 0;
+  color: var(--unam-oro);
+}
+
+.scene-alerta {
+  background: #FFF8E1;
+  border-left: 4px solid var(--unam-oro);
+  padding: 0.9rem 1.2rem;
+  margin: 1.2rem 0;
+  font-size: 0.88rem;
+  color: #7A5C00;
+  border-radius: var(--radio-sm);
+  font-style: italic;
+}
+
+/* ============================================
+   KPIs
+   ============================================ */
+.kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.8rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--unam-azul-claro);
+}
+
+.kpi {
+  background: var(--unam-azul-claro);
+  border-left: 4px solid var(--unam-azul);
+  padding: 1rem 1.2rem;
+  border-radius: var(--radio-md);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+.kpi:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-md);
+}
+
+.kpi-value {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--unam-azul);
+  line-height: 1;
+}
+
+.kpi-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--unam-gris);
+  margin-top: 0.4rem;
+}
+
+.kpi-change {
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+
+.kpi-change.up   { color: var(--unam-verde); }
+.kpi-change.down { color: var(--unam-rojo); }
+
+/* ============================================
+   TABLAS EN ESCENAS
+   ============================================ */
+.scene-tabla {
+  margin-top: 1.0rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--unam-azul-claro);
+}
+
+.scene-tabla h4 {
+  font-size: 1.2rem;
+  color: var(--unam-azul);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.scene-tabla table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.0rem;
+}
+
+.scene-tabla th {
+  background: var(--unam-azul);
+  color: var(--unam-blanco);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.scene-tabla td {
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid var(--unam-azul-claro);
+  color: var(--unam-gris);
+}
+
+.scene-tabla tr:hover td {
+  background: var(--unam-azul-claro);
+}
+
+.scene-tabla tr:last-child td {
+  border-bottom: none;
+}
+
+/* ============================================
+   CONTROLES DEL CARRUSEL
+   ============================================ */
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.4rem;
+  background: var(--unam-azul-claro);
+  border-top: 1px solid rgba(0,43,92,0.15);
+}
+
+.carousel-btn {
+  padding: 0.55rem 1.2rem;
+  background: var(--unam-azul);
+  color: var(--unam-blanco);
+  border: none;
+  border-radius: var(--radio-sm);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.carousel-btn:hover:not(:disabled) {
+  background: var(--unam-oro);
+  transform: translateY(-1px);
+}
+
+.carousel-btn:disabled {
+  background: #B0B0B0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(0,43,92,0.25);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  padding: 0;
+}
+
+.dot:hover { background: rgba(212,175,55,0.6); }
+
+.dot.active {
+  background: var(--unam-oro);
+  transform: scale(1.25);
+}
+
+/* ============================================
+   COLUMNA DERECHA — MAPA
+   ============================================ */
+.map-column {
+  background: var(--unam-blanco);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.map-column::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--unam-oro);
+  z-index: 1000;
+}
+
+.map-header {
+  background: var(--unam-azul);
+  color: var(--unam-blanco);
+  padding: 0.9rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.map-header .corte-activo {
+  color: var(--unam-oro);
+  font-weight: 700;
+  padding: 0.2rem 0.7rem;
+  background: rgba(212,175,55,0.15);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+#map { height: 620px; width: 100%; }
+
+/* ============================================
+   PESTAÑAS INTERNAS DEL MAPA (Variables / Capas)
+   ============================================ */
+.map-tabs {
+  display: flex;
+  background: var(--unam-azul-claro);
+  border-bottom: 1px solid rgba(0,43,92,0.15);
+}
+
+.map-tab {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.72rem;
+  color: var(--unam-azul);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  position: relative;
+  transition: all 0.2s;
+  border-right: 1px solid rgba(0,43,92,0.1);
+}
+
+.map-tab:last-child { border-right: none; }
+.map-tab:hover { background: rgba(212,175,55,0.15); }
+
+.map-tab.active {
+  background: var(--unam-blanco);
+  color: var(--unam-azul);
+}
+
+.map-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 3px;
+  background: var(--unam-oro);
+}
+
+/* ============================================
+   PANELES DE CONTROL DEL MAPA
+   ============================================ */
+.map-panel {
+  display: none;
+  padding: 0.8rem 1.4rem;
+  background: var(--unam-blanco);
+  border-bottom: 1px solid var(--unam-azul-claro);
+}
+
+.map-panel.active {
+  display: block;
+  animation: fadeIn 0.25s ease;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.control-group label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--unam-azul);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.control-group select {
+  flex: 1;
+  min-width: 160px;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid #CCC;
+  border-radius: var(--radio-sm);
+  background: white;
+  font-size: 0.82rem;
+  font-family: inherit;
+  color: var(--unam-gris);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.control-group select:hover { border-color: var(--unam-oro); }
+
+.control-group select:focus {
+  outline: none;
+  border-color: var(--unam-azul);
+  box-shadow: 0 0 0 3px rgba(0,43,92,0.08);
+}
+
+/* ============================================
+   LEYENDA DINÁMICA
+   ============================================ */
+.legend {
+  padding: 1rem 1.4rem;
+  border-top: 1px solid var(--unam-azul-claro);
+  background: var(--unam-blanco);
+  min-height: 60px;
+  
+  /* 👇 NUEVO: Hace que el título quede arriba y los ítems abajo */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+}
+
+.legend-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--unam-azul);
+  font-weight: 700;
+  display: block;
+}
+
+.legend-group {
+  display: flex;
+  flex-direction: row; /* 👈 Uno al lado del otro */
+  flex-wrap: wrap;     /* 👈 Si no caben, saltan a la siguiente línea */
+  gap: 8px;            /* Espacio entre cada uno */
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.7rem;
+  background: var(--unam-gris-claro);
+  border-radius: 999px;
+  color: var(--unam-gris);
+  width: auto; /* Asegura que no se estiren al 100% */
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--unam-blanco);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  background: var(--unam-azul-osc);
+  color: rgba(255,255,255,0.75);
+  padding: 2.5rem 3rem;
+  text-align: center;
+  font-size: 0.85rem;
+  border-radius: var(--radio-xl);
+  margin: 2rem 2rem 0;
+  box-shadow: var(--sombra-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--unam-oro);
+}
+
+footer p {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+footer a {
+  color: var(--unam-oro);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--unam-oro);
+  transition: color 0.2s;
+}
+
+footer a:hover { color: var(--unam-oro-claro); }
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1100px) {
+  header.cover {
+    margin: 0 1rem 1.5rem;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    min-height: auto;
+  }
+  header.cover .unam-logo { width: 130px; height: 130px; }
+  header.cover h1 { font-size: 1.3rem; }
+  header.cover .subtitle { font-size: 0.9rem; }
+  header.cover .meta { font-size: 0.78rem; }
+
+  .app-container { grid-template-columns: 1fr; padding: 0 1rem; }
+  #map { height: 400px; }
+  .content-column { min-height: 500px; }
+  .carousel-content { padding: 1.5rem; }
+  footer { margin: 1.5rem 1rem 0; padding: 2rem 1.5rem; }
+}
+
+@media (max-width: 700px) {
+  header.cover {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+  }
+  header.cover .unam-logo { width: 100px; height: 100px; }
+  header.cover h1 { font-size: 1.15rem; }
+  header.cover .subtitle { font-size: 0.85rem; }
+  header.cover .meta { font-size: 0.72rem; letter-spacing: 0.12em; }
+  header.cover .unam-badge { font-size: 0.65rem; padding: 0.3rem 0.9rem; }
+
+  .kpis { grid-template-columns: 1fr; }
+  .kpi-value { font-size: 1.4rem; }
+  .scene h2 { font-size: 1.4rem; }
+  .scene-text:first-of-type::first-letter { font-size: 2.2rem; }
+
+  .carousel-header { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .carousel-title { text-align: center; }
+  .carousel-controls { flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+  .carousel-btn { font-size: 0.7rem; padding: 0.45rem 0.9rem; }
+
+  .map-tabs { flex-direction: column; }
+  .map-tab { border-right: none; border-bottom: 1px solid rgba(0,43,92,0.1); }
+  .map-tab:last-child { border-bottom: none; }
+
+  .control-group { flex-direction: column; align-items: stretch; }
+  .control-group select { width: 100%; }
+
+  .legend { padding: 0.8rem 1rem; }
+  .legend-group { gap: 0.4rem; }
+  .legend-item { font-size: 0.7rem; padding: 0.2rem 0.5rem; }
+}
+
+/* ============================================
+   GRÁFICA TEMPORAL
+   ============================================ */
+.chart-container {
+  border-top: 1px solid var(--unam-azul-claro);
+  padding: 1rem 1.4rem;
+  background: var(--unam-blanco);
+}
+
+#chart-title {
+  font-family: Georgia, serif;
+  font-size: 0.75rem;
+  color: var(--unam-azul);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+/* ============================================
+   LEYENDA FIJA DE TRANSPORTE (MAPA BASE)
+   ============================================ */
+.legend-base {
+  position: absolute;
+  top: 150px;          /* 👈 Debajo del control de zoom (+) */
+  right: 12px;        /* 👈 Pegada a la derecha del mapa */
+  bottom: auto;       /* Anula la propiedad previa */
+  left: auto;         /* Anula la propiedad previa */
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 10px;
+  border-radius: var(--radio-sm);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  font-size: 0.72rem;
+  z-index: 999;       /* 👈 Por encima de los controles de Leaflet y panes */
+  pointer-events: none;
+  border-right: 3px solid var(--unam-oro); /* Acento al lado derecho */
+}
+
+/* (El resto de las reglas para h4, .legend-item y .legend-line se quedan igual) */
+
+.legend-base h4 {
+  margin: 0 0 6px 0;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--unam-azul);
+  font-weight: 700;
+}
+
+.legend-base .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 3px 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  font-size: 0.7rem;
+  color: var(--unam-gris);
+}
+
+.legend-base .legend-line {
+  display: inline-block;
+  width: 22px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   PORTADA — LOGO DEL CONGRESO
+   ============================================ */
+header.cover .congreso-logo {
+  width: 360px;         /* Ancho controlado para no opacar el título */
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: var(--radio-sm);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Sombra para separarlo del fondo azul */
+  transition: transform 0.3s ease;
+}
+
+header.cover .congreso-logo:hover {
+  transform: scale(1.02);
+}
+
+/* ============================================
+   IMÁGENES EN ESCENAS
+   ============================================ */
+.scene-imagen-contenedor img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid var(--unam-azul-claro);
+  transition: transform 0.3s ease;
+}
+
+.scene-imagen-contenedor img:hover {
+  transform: scale(1.02);
+}
