@@ -79,7 +79,11 @@ function inicializarMapa() {
     attributionControl: false
   });
 
-  L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(mapa);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 20
+}).addTo(mapa);
 
   // Pane dedicado para el transporte: encima de tiles (200), debajo de overlays temáticos (400)
   mapa.createPane('transportePane');
